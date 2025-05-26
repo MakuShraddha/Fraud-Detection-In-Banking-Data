@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <title>Flask Project</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Fraud Detection in Banking Data by Machine Learning Techniques
+            </h1>
+
+        <!-- Form to upload CSV file -->
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="file">Upload CSV file:</label>
+            <input type="file" name="file" accept=".csv" required>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+
+        <!-- Split Dataset button -->
+        <form action="/split" method="post">
+            <button type="submit" class="btn btn-primary">Split Dataset</button>
+        </form>
+
+        <!-- Display shapes of training and testing data -->
+        {% if X_train_shape %}
+        <p>X_train Shape: {{ X_train_shape }}</p>
+        <p>X_test Shape: {{ X_test_shape }}</p>
+        <p>y_train Shape: {{ y_train_shape }}</p>
+        <p>y_test Shape: {{ y_test_shape }}</p>
+        {% endif %}
+
+        <!-- Run CatBoost button -->
+        <form action="/run_catboost" method="post">
+            <button type="submit" class="btn btn-warning">Run CatBoost</button>
+        </form>
+
+        <!-- Run XGBoost button -->
+        <form action="/run_xgboost" method="post">
+            <button type="submit" class="btn btn-info">Run XGBoost</button>
+        </form>
+
+        <!-- Run LightGBM button -->
+        <form action="/run_lightgbm" method="post">
+            <button type="submit" class="btn btn-secondary">Run LightGBM</button>
+        </form>
+
+        <!-- Form to predict with LightGBM -->
+        <form action="/predict_lightgbm_model" method="post" enctype="multipart/form-data">
+            <label for="new_data_file">Upload New CSV file for Prediction:</label>
+            <input type="file" name="new_data_file" accept=".csv" required>
+            <button type="submit" class="btn btn-success">Predict with LightGBM</button>
+        </form>
+
+        <!-- Display predicted rows -->
+        {% if predicted_rows %}
+        <h3>Predicted Values:</h3>
+        {{ predicted_rows | safe }}
+        {% endif %}
+
+        <!-- Display top 5 rows of uploaded dataset -->
+        {% if top_rows %}
+        <h3>Top 5 Rows:</h3>
+        {{ top_rows | safe }}
+        {% endif %}
+    </div>
+</body>
+
+</html>

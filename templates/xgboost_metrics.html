@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <style>
+        /* CSS styles */
+        body {
+            background: linear-gradient(to right, #4CAF50, #2E8B57);
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .container {
+            margin-top: 50px;
+            border-radius: 10px;
+            background: linear-gradient(to right, #007bff, #0056b3);
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            color: #fff;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        a.btn {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            color: #fff;
+            background: linear-gradient(to right, #007bff, #0056b3);
+            border: 1px solid #0056b3;
+            transition: all 0.3s ease-in-out;
+        }
+
+        a.btn:hover {
+            background: linear-gradient(to right, #0056b3, #004080);
+            border: 1px solid #004080;
+        }
+    </style>
+    <title>XGBoost Metrics</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>XGBoost Metrics</h1>
+        <p style="background: linear-gradient(to right, #28a745, #218838); padding: 10px; border-radius: 5px;">Accuracy: {{ accuracy }}</p>
+        <p style="background: linear-gradient(to right, #ffc107, #e0a800); padding: 10px; border-radius: 5px;">Precision: {{ precision }}</p>
+        <p style="background: linear-gradient(to right, #007bff, #0056b3); padding: 10px; border-radius: 5px;">Recall: {{ recall }}</p>
+        <p style="background: linear-gradient(to right, #17a2b8, #138496); padding: 10px; border-radius: 5px;">F1 Score: {{ f1 }}</p>
+        <p style="background: linear-gradient(to right, #6c757d, #545b62); padding: 10px; border-radius: 5px;">ROC-AUC Score: {{ roc_auc }}</p>
+        <a href="{{ url_for('index') }}" class="btn btn-primary">Home Page</a>
+    </div>
+</body>
+
+</html>
